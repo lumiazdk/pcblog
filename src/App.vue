@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <div>
+      <v-toolbar color="cyan" dark tabs app>
+        <v-toolbar-title>朱定坤的博客</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon>
+          <v-icon>search</v-icon>
+        </v-btn>
+        <template v-slot:extension>
+          <v-tabs v-model="model" centered color="cyan" slider-color="yellow" @change="pageChage">
+            <v-tab :href="`#/`">首页</v-tab>
+            <v-tab :href="`#/life`">慢生活</v-tab>
+            <v-tab :href="`#/about`">关于我</v-tab>
+            <v-tab :href="`#/time`">时间轴</v-tab>
+            <v-tab :href="`#/gbook`">留言</v-tab>
+          </v-tabs>
+        </template>
+      </v-toolbar>
+    </div>
+    <v-content>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-content>
+    <v-footer class="pa-3" app>
+      <v-spacer></v-spacer>
+      <div>&copy; {{ new Date().getFullYear() }}</div>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      model: this.$route.path
+    };
+  },
+  methods: {
+    pageChage(res) {
+      this.$router.push({
+        path: res
+      });
+    }
+  },
+  created: function() {}
+};
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
