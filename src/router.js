@@ -4,6 +4,8 @@ import about from './pages/about'
 import gbook from './pages/gbook'
 import life from './pages/life'
 import time from './pages/time'
+import postDetail from './pages/postDetail'
+
 
 
 const routes = [
@@ -12,6 +14,8 @@ const routes = [
     { path: '/gbook', component: gbook },
     { path: '/life', component: life },
     { path: '/time', component: time },
+    { path: '/postDetail', component: postDetail },
+
 
 ]
 const router = new VueRouter({

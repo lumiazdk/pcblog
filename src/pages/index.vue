@@ -4,14 +4,13 @@
       <v-flex d-flex xs8>
         <v-layout column>
           <v-flex xs4>
-            <v-carousel>
+            <v-carousel height="408">
               <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src"></v-carousel-item>
             </v-carousel>
           </v-flex>
           <v-flex>
             <v-card class="card">
               <v-card-title>
-                <v-icon large left>mdi-twitter</v-icon>
                 <span class="title font-weight-light">Twitter</span>
               </v-card-title>
               <v-layout row wrap>
@@ -47,11 +46,10 @@
                         </v-list-tile-content>
 
                         <v-layout align-center justify-end>
+                          <i class="iconfont icon-shijian"></i>
+                          <span class="subheading mr-2 ml-2">2018.2.3</span>
                           <i class="iconfont icon-chakan"></i>
-                          <span class="subheading mr-2">256</span>
-                          <span class="mr-1">·</span>
-                          <v-icon class="mr-1">mdi-share-variant</v-icon>
-                          <span class="subheading">45</span>
+                          <span class="subheading mr-2 ml-2">256</span>
                         </v-layout>
                       </v-list-tile>
                     </v-card-actions>

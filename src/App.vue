@@ -2,7 +2,7 @@
   <v-app>
     <div>
       <v-toolbar color="cyan" dark tabs app>
-        <v-toolbar-title>朱定坤的博客</v-toolbar-title>
+        <v-toolbar-title>朱定坤</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn icon>
           <v-icon>search</v-icon>
