@@ -9,54 +9,7 @@
             </v-carousel>
           </v-flex>
           <v-flex>
-            <v-card class="card">
-              <v-card-title>
-                <span class="title font-weight-light">Twitter</span>
-              </v-card-title>
-              <v-layout row wrap>
-                <v-flex xs4>
-                  <v-img
-                    :src="`https://picsum.photos/500/300?image=${1 * 5 + 10}`"
-                    :lazy-src="`https://picsum.photos/10/6?image=${2 * 5 + 10}`"
-                    aspect-ratio="1"
-                    class="grey lighten-2"
-                    height="133"
-                  >
-                    <template v-slot:placeholder>
-                      <v-layout fill-height align-center justify-center ma-0>
-                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                      </v-layout>
-                    </template>
-                  </v-img>
-                </v-flex>
-                <v-flex xs8>
-                  <v-layout column wrap>
-                    <v-card-text>"Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."</v-card-text>
-                    <v-card-actions>
-                      <v-list-tile class="grow">
-                        <v-list-tile-avatar color="grey darken-3">
-                          <v-img
-                            class="elevation-6"
-                            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                          ></v-img>
-                        </v-list-tile-avatar>
-
-                        <v-list-tile-content>
-                          <v-list-tile-title>Evan You</v-list-tile-title>
-                        </v-list-tile-content>
-
-                        <v-layout align-center justify-end>
-                          <i class="iconfont icon-shijian"></i>
-                          <span class="subheading mr-2 ml-2">2018.2.3</span>
-                          <i class="iconfont icon-chakan"></i>
-                          <span class="subheading mr-2 ml-2">256</span>
-                        </v-layout>
-                      </v-list-tile>
-                    </v-card-actions>
-                  </v-layout>
-                </v-flex>
-              </v-layout>
-            </v-card>
+            <blogList></blogList>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -135,7 +88,11 @@
 </template>
 
 <script>
+import blogList from "../components/blogList.vue";
 export default {
+  components: {
+    blogList
+  },
   data: () => ({
     items: [
       {
@@ -156,10 +113,7 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  padding: 0px 20px 20px 20px;
-  cursor: pointer;
-}
+
 .tuijian {
   margin-bottom: 10px;
 }

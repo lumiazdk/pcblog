@@ -10,7 +10,7 @@
         <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-            <div>{{ card_text }}</div>
+            <markdown :content="data.content"></markdown>
           </div>
         </v-card-title>
 
@@ -23,12 +23,35 @@
   </v-layout>
 </template>
 <script>
+import markdown from "../components/markdown";
+import axios from "axios";
 export default {
+  components: {
+    markdown
+  },
   data() {
     return {
-      card_text:
-        "Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat."
+      data: {
+        content: "# 暂无内容"
+      }
     };
+  },
+  methods: {
+    getDetail() {
+      axios({
+        method: "post",
+        url: "/getPost",
+        data: {
+          page: 1,
+          where: {
+            id: this.$route.query.id
+          }
+        }
+      }).then(res => {
+        let data = res.data.result.data.rows[0];
+        this.data = data;
+      });
+    }
   }
 };
 </script>
