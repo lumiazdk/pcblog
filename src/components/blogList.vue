@@ -51,6 +51,15 @@
         </v-flex>
       </v-layout>
     </v-card>
+    <v-layout justify-center v-if="length>1">
+      <v-flex xs12>
+        <v-card>
+          <v-card-text>
+            <v-pagination v-model="page" :length="length"></v-pagination>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 <script>
@@ -90,6 +99,16 @@ export default {
   },
   created() {
     this.getlist();
+  },
+  watch: {
+    page() {
+      this.getlist();
+    }
+  },
+  computed: {
+    length() {
+      return Math.ceil(this.count / 10);
+    }
   }
 };
 </script>
@@ -97,5 +116,6 @@ export default {
 .card {
   padding: 0px 20px 20px 20px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 </style>

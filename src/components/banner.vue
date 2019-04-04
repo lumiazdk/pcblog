@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     async getBanner() {
-      let data = await axios({
+      await axios({
         method: "post",
         url: "/getBanner",
         data: {
@@ -25,7 +25,6 @@ export default {
       }).then(res => {
         if (res.data.code == 1) {
           let data = res.data.result.data.rows[0];
-          console.log(data);
           let items = JSON.parse(data.bannerPath);
           items.forEach(element => {
             this.items.push({

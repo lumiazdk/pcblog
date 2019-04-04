@@ -18,41 +18,7 @@ export default {
   }
 };
 </script>
-<style  scoped>
-.markdown-body {
-  /*pre {
-    padding: 0px 24px;
-    max-width: 800px;
-    white-space: pre-wrap;
-}
-code {
-    font-family: Consolas, Monaco, Andale Mono, monospace;
-    line-height: 1.5;
-    font-size: 13px;
-}*/
-
-  /** markdown preview plus 对于代码块的处理有些问题, 所以使用统一的颜色 */
-
-  /*code .keyword {
-  color: #8959a8;
-}
-
-code .number {
-  color: #f5871f;
-}
-
-code .comment {
-  color: #998
-}*/
-
-  /* Code below this line is copyright Twitter Inc. */
-
-  /* override default chrome & firefox settings */
-
-  /* grey out placeholders */
-
-  /* buttons */
-}
+<style>
 .markdown-body body {
   margin: 0 auto;
   font-family: "Microsoft YaHei", arial, sans-serif;
@@ -125,9 +91,6 @@ code .comment {
 .markdown-body a:hover {
   text-decoration: none;
   color: #ff6600;
-}
-.markdown-body a:visited {
-  /*color: purple;*/
 }
 .markdown-body ul,
 .markdown-body ol {
@@ -364,8 +327,8 @@ code .comment {
     from(#049cdb),
     to(#0064cd)
   );
-  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
-  background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -moz-linear-gradient(to top, #049cdb, #0064cd);
+  background-image: -ms-linear-gradient(to top, #049cdb, #0064cd);
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -373,9 +336,9 @@ code .comment {
     color-stop(0%, #049cdb),
     color-stop(100%, #0064cd)
   );
-  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
-  background-image: -o-linear-gradient(top, #049cdb, #0064cd);
-  background-image: linear-gradient(top, #049cdb, #0064cd);
+  background-image: -webkit-linear-gradient(to top, #049cdb, #0064cd);
+  background-image: -o-linear-gradient(to top, #049cdb, #0064cd);
+  background-image: linear-gradient(to top, #049cdb, #0064cd);
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   border: 1px solid #004b9a;
@@ -442,11 +405,11 @@ code .comment {
     from(#ebf3fc),
     to(#dce9f9)
   );
-  background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
-  background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
-  background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
-  background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
-  background-image: linear-gradient(top, #ebf3fc, #dce9f9);
+  background-image: -webkit-linear-gradient(to top, #ebf3fc, #dce9f9);
+  background-image: -moz-linear-gradient(to top, #ebf3fc, #dce9f9);
+  background-image: -ms-linear-gradient(to top, #ebf3fc, #dce9f9);
+  background-image: -o-linear-gradient(to top, #ebf3fc, #dce9f9);
+  background-image: linear-gradient(to top, #ebf3fc, #dce9f9);
   /*-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
     -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
     box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;*/

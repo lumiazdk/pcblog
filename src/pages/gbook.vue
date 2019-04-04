@@ -18,7 +18,7 @@
                 <v-list-tile-sub-title v-html="item.message"></v-list-tile-sub-title>
               </v-list-tile-content>
             </v-list-tile>
-            <v-divider :key="index" :inset="true"></v-divider>
+            <v-divider :key="index" :inset="true" v-if="index!=itemsl.length-1"></v-divider>
           </template>
         </v-list>
       </v-card>
@@ -26,7 +26,6 @@
         <v-card-title>
           <span class="title font-weight-light">说点什么吧</span>
         </v-card-title>
-
         <form class="form" ref="form">
           <v-text-field
             v-model="name"
@@ -140,6 +139,7 @@ export default {
           if (res.data.code == 1) {
             this.snackbar = true;
             this.snackbarText = "留言成功";
+            this.getMessage();
           } else {
             this.snackbar = true;
             this.snackbarText = "留言失败";
