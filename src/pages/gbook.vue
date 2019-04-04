@@ -1,20 +1,24 @@
 <template>
   <v-layout row>
+    <v-snackbar v-model="snackbar">
+      {{snackbarText}}
+      <v-btn color="pink" flat @click="snackbar = false">关闭</v-btn>
+    </v-snackbar>
     <v-flex xs12>
       <v-card>
         <v-list three-line>
           <template v-for="(item, index) in itemsl">
             <v-subheader v-if="item.header" :key="item.header">{{ item.header }}</v-subheader>
-            <v-divider v-else-if="item.divider" :key="index" :inset="item.inset"></v-divider>
-            <v-list-tile v-else :key="item.title" avatar>
+            <v-list-tile :key="item.title" avatar>
               <v-list-tile-avatar>
-                <img :src="item.avatar">
+                <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg">
               </v-list-tile-avatar>
               <v-list-tile-content>
-                <v-list-tile-title v-html="item.title"></v-list-tile-title>
-                <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
+                <v-list-tile-title v-html="item.name"></v-list-tile-title>
+                <v-list-tile-sub-title v-html="item.message"></v-list-tile-sub-title>
               </v-list-tile-content>
             </v-list-tile>
+            <v-divider :key="index" :inset="true"></v-divider>
           </template>
         </v-list>
       </v-card>
@@ -23,12 +27,12 @@
           <span class="title font-weight-light">说点什么吧</span>
         </v-card-title>
 
-        <form class="form">
+        <form class="form" ref="form">
           <v-text-field
             v-model="name"
             :error-messages="nameErrors"
             :counter="10"
-            label="Name"
+            label="称呼"
             required
             @input="$v.name.$touch()"
             @blur="$v.name.$touch()"
@@ -43,18 +47,18 @@
           ></v-text-field>
           <v-textarea
             name="input-7-1"
-            label="Default style"
+            label="留言"
             value
             hint="Hint text"
-            v-model="name"
-            @input="$v.name.$touch()"
-            @blur="$v.name.$touch()"
+            v-model="message"
+            @input="$v.message.$touch()"
+            @blur="$v.message.$touch()"
             required
-            :error-messages="nameErrors"
+            :error-messages="messageErrors"
           ></v-textarea>
 
-          <v-btn @click="submit">submit</v-btn>
-          <v-btn @click="clear">clear</v-btn>
+          <v-btn @click="submit">发送</v-btn>
+          <v-btn @click="clear">清除</v-btn>
         </form>
       </v-card>
     </v-flex>
@@ -63,6 +67,7 @@
 
 <script>
 import { validationMixin } from "vuelidate";
+import axios from "axios";
 import { required, maxLength, email } from "vuelidate/lib/validators";
 export default {
   mixins: [validationMixin],
@@ -70,12 +75,7 @@ export default {
   validations: {
     name: { required, maxLength: maxLength(10) },
     email: { required, email },
-    select: { required },
-    checkbox: {
-      checked(val) {
-        return val;
-      }
-    }
+    message: { required }
   },
   data() {
     return {
@@ -87,74 +87,79 @@ export default {
           subtitle:
             "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
         },
-        { divider: true, inset: true },
-        {
-          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-          title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
-          subtitle:
-            "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
-        },
-        { divider: true, inset: true },
-        {
-          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
-          title: "Oui oui",
-          subtitle:
-            "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?"
-        },
-        { divider: true, inset: true },
-        {
-          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
-          title: "Birthday gift",
-          subtitle:
-            "<span class='text--primary'>Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?"
-        },
-        { divider: true, inset: true },
-        {
-          avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
-          title: "Recipe to try",
-          subtitle:
-            "<span class='text--primary'>Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos."
-        }
+        { divider: true, inset: true }
       ],
       name: "",
       email: "",
-      select: null,
-      items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-      checkbox: false
+      message: "",
+      snackbar: false,
+      snackbarText: "",
+      page: 1,
+      count: 0
     };
   },
   computed: {
-    checkboxErrors() {
-      const errors = [];
-      if (!this.$v.checkbox.$dirty) return errors;
-      !this.$v.checkbox.checked && errors.push("You must agree to continue!");
-      return errors;
-    },
-    selectErrors() {
-      const errors = [];
-      if (!this.$v.select.$dirty) return errors;
-      !this.$v.select.required && errors.push("Item is required");
-      return errors;
-    },
     nameErrors() {
       const errors = [];
       if (!this.$v.name.$dirty) return errors;
-      !this.$v.name.maxLength &&
-        errors.push("Name must be at most 10 characters long");
-      !this.$v.name.required && errors.push("Name is required.");
+      !this.$v.name.maxLength && errors.push("称呼不能为空");
+      !this.$v.name.required && errors.push("称呼不能为空.");
+      return errors;
+    },
+    messageErrors() {
+      const errors = [];
+      if (!this.$v.message.$dirty) return errors;
+      !this.$v.message.required && errors.push("留言不能为空");
       return errors;
     },
     emailErrors() {
       const errors = [];
       if (!this.$v.email.$dirty) return errors;
-      !this.$v.email.email && errors.push("Must be valid e-mail");
-      !this.$v.email.required && errors.push("E-mail is required");
+      !this.$v.email.email && errors.push("邮件格式错误");
+      !this.$v.email.required && errors.push("邮件不能为空");
       return errors;
     }
   },
   methods: {
     submit() {
       this.$v.$touch();
+      if (
+        this.nameErrors.length == 0 &&
+        this.messageErrors.length == 0 &&
+        this.emailErrors.length == 0
+      ) {
+        axios({
+          method: "post",
+          url: "/addMessage",
+          data: {
+            name: this.name,
+            email: this.email,
+            message: this.message
+          }
+        }).then(res => {
+          if (res.data.code == 1) {
+            this.snackbar = true;
+            this.snackbarText = "留言成功";
+          } else {
+            this.snackbar = true;
+            this.snackbarText = "留言失败";
+          }
+        });
+      }
+    },
+    async getMessage() {
+      let data = await axios({
+        method: "post",
+        url: "/getMessage",
+        data: {
+          page: this.page,
+          where: {}
+        }
+      });
+      if (data.data.code == 1) {
+        this.itemsl = data.data.result.data.rows;
+        this.count = data.data.result.data.count;
+      }
     },
     clear() {
       this.$v.$reset();
@@ -163,6 +168,9 @@ export default {
       this.select = null;
       this.checkbox = false;
     }
+  },
+  created() {
+    this.getMessage();
   }
 };
 </script>

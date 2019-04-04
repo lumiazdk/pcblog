@@ -4,11 +4,14 @@
     <v-timeline>
       <v-timeline-item v-for="(year, i) in years" :key="i" :color="year.color" small>
         <template v-slot:opposite>
-          <span :class="`headline font-weight-bold ${year.color}--text`" v-text="year.year"></span>
+          <span
+            :class="`headline font-weight-bold ${year.color}--text`"
+            v-text="moment(year.createdAt).format('YYYY.MM.DD')"
+          ></span>
         </template>
         <div class="py-3">
-          <h2 :class="`headline font-weight-light mb-3 ${year.color}--text`">Lorem ipsum</h2>
-          <div>Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.</div>
+          <h2 :class="`headline font-weight-light mb-3 ${year.color}--text`">{{year.title}}</h2>
+          <div>{{year.introduction}}</div>
         </div>
       </v-timeline-item>
     </v-timeline>
@@ -16,31 +19,42 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  data: () => ({
-    years: [
-      {
-        color: "cyan",
-        year: "1960"
-      },
-      {
-        color: "green",
-        year: "1970"
-      },
-      {
-        color: "pink",
-        year: "1980"
-      },
-      {
-        color: "amber",
-        year: "1990"
-      },
-      {
-        color: "orange",
-        year: "2000"
+  data() {
+    return {
+      years: [],
+      count: 0,
+      page: 1
+    };
+  },
+  methods: {
+    async getlist() {
+      let data = await axios({
+        method: "post",
+        url: "/getPost",
+        data: {
+          page: this.page,
+          where: {}
+        }
+      });
+      if (data.data.code == 1) {
+        function sum(m, n) {
+          var num = Math.floor(Math.random() * (m - n) + n);
+          return num;
+        }
+        let color = ["cyan", "green", "pink", "amber", "orange"];
+        data.data.result.data.rows.forEach(element => {
+          element.color = color[sum(0, 4)];
+        });
+        this.years = data.data.result.data.rows;
+        this.count = data.data.result.data.count;
       }
-    ]
-  })
+    }
+  },
+  created() {
+    this.getlist();
+  }
 };
 </script>
 

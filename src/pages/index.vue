@@ -4,9 +4,7 @@
       <v-flex d-flex xs8>
         <v-layout column>
           <v-flex xs4>
-            <v-carousel height="408">
-              <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src"></v-carousel-item>
-            </v-carousel>
+            <banner></banner>
           </v-flex>
           <v-flex>
             <blogList></blogList>
@@ -89,31 +87,18 @@
 
 <script>
 import blogList from "../components/blogList.vue";
+import banner from "../components/banner.vue";
+
 export default {
   components: {
-    blogList
+    blogList,
+    banner
   },
-  data: () => ({
-    items: [
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-      },
-      {
-        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-      }
-    ]
-  })
+  data: () => ({})
 };
 </script>
 
 <style scoped>
-
 .tuijian {
   margin-bottom: 10px;
 }
