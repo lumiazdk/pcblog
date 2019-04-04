@@ -6,8 +6,8 @@
     </v-snackbar>
     <v-flex xs12>
       <v-card>
-        <v-list three-line>
-          <template v-for="(item, index) in itemsl">
+        <v-list three-line class="animated bounceInDown">
+          <div v-for="(item, index) in itemsl" :key="index" class="animated bounceInDown">
             <v-subheader v-if="item.header" :key="item.header">{{ item.header }}</v-subheader>
             <v-list-tile :key="item.title" avatar>
               <v-list-tile-avatar>
@@ -19,7 +19,7 @@
               </v-list-tile-content>
             </v-list-tile>
             <v-divider :key="index" :inset="true" v-if="index!=itemsl.length-1"></v-divider>
-          </template>
+          </div>
         </v-list>
       </v-card>
       <v-card>

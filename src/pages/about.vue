@@ -5,7 +5,7 @@
         <v-layout row wrap>
           <v-flex xs3>
             <v-hover>
-              <v-card slot-scope="{ hover }" class="mx-auto" color="grey lighten-4" max-width="600">
+              <v-card slot-scope="{ hover }" class="mx-auto animated bounceInLeft" color="grey lighten-4" max-width="600" >
                 <v-img
                   :aspect-ratio="16/9"
                   src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"
@@ -22,11 +22,11 @@
             </v-hover>
           </v-flex>
           <v-flex xs3>
-            <div class="text">真的猛士，敢于直面惨淡的人生，敢于正视淋漓的鲜血。</div>
+            <div class="text animated bounceInRight" >真的猛士，敢于直面惨淡的人生，敢于正视淋漓的鲜血。</div>
           </v-flex>
           <v-flex xs3>
             <v-hover>
-              <v-card slot-scope="{ hover }" class="mx-auto" color="grey lighten-4" max-width="600">
+              <v-card slot-scope="{ hover }" class="mx-auto animated bounceInLeft" color="grey lighten-4" max-width="600">
                 <v-img
                   :aspect-ratio="16/9"
                   src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"
@@ -43,16 +43,16 @@
             </v-hover>
           </v-flex>
           <v-flex xs3>
-            <div class="text">时间对于我来说是很宝贵的，用经济学的眼光看是一种财富。</div>
+            <div class="text animated bounceInRight">时间对于我来说是很宝贵的，用经济学的眼光看是一种财富。</div>
           </v-flex>
         </v-layout>
         <v-layout row wrap>
           <v-flex xs3>
-            <div class="text">哪里有天才，我是把别人喝咖啡的工夫都用在了工作上了。</div>
+            <div class="text animated bounceInRight">哪里有天才，我是把别人喝咖啡的工夫都用在了工作上了。</div>
           </v-flex>
           <v-flex xs3>
             <v-hover>
-              <v-card slot-scope="{ hover }" class="mx-auto" color="grey lighten-4" max-width="600">
+              <v-card slot-scope="{ hover }" class="mx-auto animated bounceInLeft" color="grey lighten-4" max-width="600">
                 <v-img
                   :aspect-ratio="16/9"
                   src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"
@@ -69,11 +69,11 @@
             </v-hover>
           </v-flex>
           <v-flex xs3>
-            <div class="text">倘能生存，我当然仍要学习。</div>
+            <div class="text animated bounceInRight">倘能生存，我当然仍要学习。</div>
           </v-flex>
           <v-flex xs3>
             <v-hover>
-              <v-card slot-scope="{ hover }" class="mx-auto" color="grey lighten-4" max-width="600">
+              <v-card slot-scope="{ hover }" class="mx-auto animated bounceInLeft" color="grey lighten-4" max-width="600">
                 <v-img
                   :aspect-ratio="16/9"
                   src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"

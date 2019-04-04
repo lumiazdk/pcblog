@@ -1,7 +1,7 @@
 <template>
   <v-layout column>
     <v-flex xs4>
-      <v-card class="mx-auto card">
+      <v-card class="mx-auto card animated bounceIn">
         <v-card-title>
           <span class="title font-weight-light">推荐</span>
         </v-card-title>

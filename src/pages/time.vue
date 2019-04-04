@@ -2,7 +2,7 @@
 <template>
   <v-container>
     <v-timeline>
-      <v-timeline-item v-for="(year, i) in years" :key="i" :color="year.color" small>
+      <v-timeline-item v-for="(year, i) in years" :key="i" :color="year.color" small class=" animated bounceInDown">
         <template v-slot:opposite>
           <span
             :class="`headline font-weight-bold ${year.color}--text`"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="card" v-for="(item,k) in tableData" :key="k" @click="blogDetail(item)">
+    <v-card class="card animated  bounceIn" v-for="(item,k) in tableData" :key="k" @click="blogDetail(item)">
       <v-card-title>
         <span class="title font-weight-light">{{item.title}}</span>
       </v-card-title>

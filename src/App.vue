@@ -60,7 +60,7 @@ export default {
         return config;
       },
       error => {
-        return Promise.reject(err);
+        return Promise.reject(error);
       }
     );
 
